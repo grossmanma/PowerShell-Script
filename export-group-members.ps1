@@ -1,5 +1,5 @@
 ﻿
-foreach ($sam in Get-ADGroupMember -Identity "Application Access - DMS"){
+foreach ($sam in Get-ADGroupMember -Identity "AD-group"){
 
 $upn = $sam.SamAccountName
 
