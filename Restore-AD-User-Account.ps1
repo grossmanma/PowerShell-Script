@@ -1,4 +1,4 @@
-﻿ 
+﻿ # restore a list of users. if you need to create the list you can do Get-ADObject -Filter {sAMAccountName -eq $user} -includeDeletedObjects | select SamAccountName | out-file -filepath "C:\Source\users.txt" -Append
  foreach($user in Get-Content C:\Source\users.txt){
  Get-ADObject -Filter {sAMAccountName -eq $user} -includeDeletedObjects | Restore-ADObject -NewName $user
  $userid = Get-ADUser $user
@@ -11,7 +11,7 @@
  }
 
 
-
+#Restore one user you most know the SamAccountName
  $user = "User "
 Get-ADObject -Filter {sAMAccountName -eq $user} -includeDeletedObjects | Restore-ADObject -NewName $user
 $userid = Get-ADUser $user
