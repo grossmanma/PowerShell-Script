@@ -1,0 +1,13 @@
+﻿$groups = "Group name"
+foreach($user in  Get-ADUser -Filter {Enabled -eq $false}){
+foreach ($group in $groups ) {
+      
+    $members = Get-ADGroupMember -Identity $group -Recursive | Select -ExpandProperty SamAccountName
+
+    If ($members -contains $user) {
+      write-host " is a member"
+       Remove-ADGroupMember -Identity $groups -Members $user 
+    } else {
+          write-host "$user.displayname Not a member"
+    }
+}}
